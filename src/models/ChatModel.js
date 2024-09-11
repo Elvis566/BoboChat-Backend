@@ -1,0 +1,23 @@
+import { sequelize } from "../DB/conexion";
+import { DataTypes } from "sequelize";
+import { UserModel } from "./UserModel";
+
+
+export const ChatModel = sequelize.define('chats',{
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+    }
+},{
+    timestamps: false
+});
+
+UserModel.hasMany(ChatModel, {as:'enlaceOne', foreignKey: 'user_one_id'});
+ChatModel.belongsTo(UserModel, {as:'enlaceOne', foreignKey: 'user_one_id'});
+
+UserModel.hasMany(ChatModel, {as:'enlaceTwo', foreignKey: 'user_two_id'});
+ChatModel.belongsTo(UserModel, {as:'enlaceTwo', foreignKey: 'user_two_id'});
+
+
+

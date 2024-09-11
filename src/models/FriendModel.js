@@ -1,0 +1,20 @@
+import { sequelize } from "../DB/conexion";
+import { DataTypes } from "sequelize";
+import { UserModel } from "./UserModel";
+
+export const FriendModel = sequelize.define('friends',{
+    id:{
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    }
+},{
+    timestamps: false
+});
+
+UserModel.hasMany(FriendModel, {as:'enlaceU', foreignKey: 'user_id'});
+FriendModel.belongsTo(UserModel, {as:'enlaceU', foreignKey: 'user_id'});
+
+UserModel.hasMany(FriendModel, {as:'enlaceF', foreignKey: 'friend_id'});
+FriendModel.belongsTo(UserModel, {as:'enlaceF', foreignKey: 'friend_id'});
+
