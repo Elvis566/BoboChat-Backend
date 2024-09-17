@@ -21,7 +21,7 @@ export const UserModel = sequelize.define('users',{
     },
     descripcion: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     }
 },{
     timestamps: false
