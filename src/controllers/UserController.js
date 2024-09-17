@@ -1,9 +1,6 @@
 import { UserModel} from '../models/UserModel.js'
-import { FriendModel} from '../models/FriendModel.js'
-import { AvatarModel } from '../models/AvatarModel.js'
 
 import bcryptjs from 'bcryptjs'
-import { where } from 'sequelize'
 
 export const saveUser = async(req, res)=>{
     const {apodo, email, password, avatar_id, descripcion} = req.body;
@@ -75,6 +72,7 @@ export const login = async(req, res)=> {
 
 export const update = async(req, res)=> {
     const ID  = req.params.id;
+    const {avatar_id, apodo, descripcion} = req.body;
 
     try {
         const user = await UserModel.findByPk(ID);
@@ -83,7 +81,10 @@ export const update = async(req, res)=> {
             return res.status(400).json({message: 'no found user'})
         }
 
-        
+        user.set({apodo: apodo, descripcion: descripcion, avatar_id: avatar_id});
+        user.save();
+
+        return res.status(200).json({user: user, message:'Update user'})
     } catch (error) {
         return res.status(500).json({message: error})
     }

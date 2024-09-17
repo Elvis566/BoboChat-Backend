@@ -7,6 +7,10 @@ export const FriendModel = sequelize.define('friends',{
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
+    }, 
+    apodo: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 },{
     timestamps: false

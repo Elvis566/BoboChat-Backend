@@ -9,6 +9,7 @@ import { sequelize } from './DB/conexion.js';
 
 // importamos las rutas 
 import { routerAvatar } from './routers/AvatarRouter.js';
+import { routerUser } from './routers/UserRouter.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -35,7 +36,9 @@ app.use(bodyParse.urlencoded({extended: true}))
 
 // Routes
 app.use('/avatar',routerAvatar)
+app.use('/user', routerUser)
 
+// Funcion de conexion que levanta todo el servidor del backend
 const conexion = async()=> {
     try {
         await sequelize.authenticate();
