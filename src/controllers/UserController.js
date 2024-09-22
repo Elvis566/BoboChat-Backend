@@ -1,4 +1,5 @@
 import { UserModel} from '../models/UserModel.js'
+import { Op } from 'sequelize';
 
 import bcryptjs from 'bcryptjs'
 
@@ -87,6 +88,32 @@ export const update = async(req, res)=> {
         return res.status(200).json({user: user, message:'Update user'})
     } catch (error) {
         return res.status(500).json({message: error})
+    }
+}
+
+export const busqueda = async(req, res)=>{
+    const CRITERIO = req.body.criterio;
+
+    try {
+        if(!CRITERIO){
+            return res.status(400).json({message: 'Not input invalid'});
+        }
+
+        const ENCONTRADO = await UserModel.findAll({
+            where: {
+                apodo: {
+                    [Op.like]:  `%${CRITERIO}%`
+                }
+            }
+        });
+
+        if(!ENCONTRADO){
+            return res.status(401).json({message: 'Not found'})
+        }
+
+        return res.status(400).json({ENCONTRADO: ENCONTRADO});
+    } catch (error) {
+        return res.status(500).json({message: error});
     }
 }
 
