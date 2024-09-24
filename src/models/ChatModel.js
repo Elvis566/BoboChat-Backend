@@ -8,6 +8,11 @@ export const ChatModel = sequelize.define('chats',{
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+    },
+    status: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+        allowNull:false
     }
 },{
     timestamps: false
