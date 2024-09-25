@@ -1,4 +1,4 @@
-import { sequelize } from "../DB/conexion";
+import { sequelize } from "../DB/conexion.js";
 import { DataTypes } from "sequelize";
 import { AvatarModel } from "./AvatarModel.js";
 export const UserModel = sequelize.define('users',{

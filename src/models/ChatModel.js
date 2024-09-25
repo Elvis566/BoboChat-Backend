@@ -1,6 +1,6 @@
-import { sequelize } from "../DB/conexion";
+import { sequelize } from "../DB/conexion.js";
 import { DataTypes } from "sequelize";
-import { UserModel } from "./UserModel";
+import { UserModel } from "./UserModel.js";
 
 
 export const ChatModel = sequelize.define('chats',{
