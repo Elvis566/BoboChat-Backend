@@ -24,5 +24,20 @@ export const createChat = async(req, res)=> {
 }
 
 export const deleteChat = async(req, res)=> {
-    
+    const ID  = req.params.id;
+
+    try {
+        const ENCONTRADO = await ChatModel.findByPk(ID)
+
+        if(!ENCONTRADO){
+            return res.status(401).json({message: 'Not found'})
+        }
+
+        ENCONTRADO.set({'status': false});
+        ENCONTRADO.save();
+
+        return res.status(200).json({message: 'Delete a chat'})
+    } catch (error) {
+        return res.status(500).json({message: error})
+    }
 }
