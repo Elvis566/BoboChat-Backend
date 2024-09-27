@@ -11,6 +11,7 @@ import { sequelize } from './DB/conexion.js';
 import { routerAvatar } from './routers/AvatarRouter.js';
 import { routerUser } from './routers/UserRouter.js';
 import { routerFriends } from './routers/FriendRouter.js';
+import { routerChat } from './routers/ChatRouter.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -39,6 +40,7 @@ app.use(bodyParse.urlencoded({extended: true}))
 app.use('/avatar',routerAvatar)
 app.use('/user', routerUser)
 app.use('/friends', routerFriends)
+app.use('/chat', routerChat)
 
 // Funcion de conexion que levanta todo el servidor del backend
 const conexion = async()=> {
