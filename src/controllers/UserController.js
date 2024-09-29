@@ -6,7 +6,7 @@ import bcryptjs from 'bcryptjs'
 export const saveUser = async(req, res)=>{
     const {apodo, email, password, avatar_id, descripcion} = req.body;
     try {
-        if(!apodo || !email || !password || !avatar_id || !descripcion){
+        if(!apodo || !email || !password || !avatar_id){
             return res.status(401).json({message:'Error all create in user'})
         }
     
@@ -92,7 +92,7 @@ export const update = async(req, res)=> {
 }
 
 export const busqueda = async(req, res)=>{
-    const CRITERIO = req.body.criterio;
+    const CRITERIO = req.params.criterio;
 
     try {
         if(!CRITERIO){
